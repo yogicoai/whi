@@ -1,21 +1,18 @@
-// 찍기 — 라벨 촬영은 다음 단계에서 옮긴다(보틀 렌즈의 판독·분석을 이 앱에 맞게 다시 붙이는 일).
-// 그때까지 막다른 화면이 되지 않게, 이름으로 찾는 길을 바로 열어 둔다.
+// 찍기 — 라벨을 찍으면 어떤 위스키인지 읽어 그 위스키 화면으로 이어 준다(2026-10-28, 보틀 렌즈의 라벨 판독을 옮김).
+// 판독 · 찾기는 app/api/scan(lib/server/scan.js), 화면 흐름은 components/ScanFlow.js.
 
-import SearchBox from "@/components/SearchBox";
-import Icon from "@/components/Icon";
+import ScanFlow from "@/components/ScanFlow";
+import { allWhiskies } from "@/lib/whiskies";
 
 export const metadata = { title: "찍기 — Whisky Lens" };
 
 export default function ScanPage() {
+  const total = allWhiskies().length;
   return (
-    <main className="page page-narrow">
+    <main className="page page-narrow page-scan">
       <h1 className="display">라벨 찍기</h1>
-      <div className="scan-frame" aria-hidden="true">
-        <Icon name="scan" size={56} />
-      </div>
-      <p className="lead">병 앞면 라벨을 찍으면 어떤 위스키인지 읽고, 바로 섞는 법을 알려 드려요.</p>
-      <p className="note warn">라벨 촬영은 다음 업데이트에서 연결됩니다. 지금은 이름으로 찾아 주세요.</p>
-      <SearchBox placeholder="위스키 이름으로 찾기" />
+      <p className="lead">병 앞면 라벨을 찍으면 위스키 {total.toLocaleString()}종 가운데 어떤 위스키인지 찾아 드려요.</p>
+      <ScanFlow total={total} />
     </main>
   );
 }

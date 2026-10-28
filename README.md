@@ -75,6 +75,7 @@ npm run photos     # docs/design 의 2K 원본 → public/drinks · public/steps
 | `app/terms` · `app/privacy` · `app/youth` · `components/SiteFooter.js` | 약관 화면과 화면 맨 아래 사업자 정보 줄 — 어드민 '사업자 정보·약관'에서 게시 · 저장한 것 |
 | `app/api/admin/*` · `app/admin/*` · `components/admin/*` | 어드민 API(쿠키로 막음) · 어드민 화면 |
 | `components/Brand.js` | 앱 이름 로고 — 마크(위스키가 반쯤 담긴 렌즈) + "Whisky Lens" 글자. 홈 위 · PC 위쪽 메뉴 · 어드민 |
+| `components/ScanFlow.js` · `CaptureScreen.js` | 찍기 — 라벨 촬영(보틀 렌즈 촬영 화면) → /api/scan(저비용 모델로 이름 읽기 → lib/server/scan.js 가 1,142종에서 찾기) → 찾은 위스키 · 후보 |
 | `components/AccountDrawer.js` | 내 정보 서랍 — 오른쪽에서 나오는 회원 · 활동 · 계정 창(보틀 렌즈 구성). 어디서든 `openAccount()` 로 연다 |
 | `app/login` · `app/signup` · `app/account` | 시작하기 · 가입 3단계(동의 → 나이 확인 → 프로필) · 회원정보 |
 | `lib/share.js` | 공유 주소 — 레시피·이름·메모·보낸 사람을 주소 하나에 담고 읽기 |
@@ -93,6 +94,6 @@ npm run photos     # docs/design 의 2K 원본 → public/drinks · public/steps
 - 카톡 미리보기 카드는 배포한 뒤에야 보인다(카톡이 localhost 를 열 수 없다). 배포 주소는 `NEXT_PUBLIC_SITE_URL` 로 준다.
 - 화면 글꼴은 앱 안(`app/fonts/pretendard`)에서 내보내지만, 카드 이미지(/api/card) 글꼴은 jsDelivr 에서 받는다 — 서버가 인터넷에 닿아야 한다.
 - 화면 폭: 폰 → 태블릿(720px~) → PC(1080px~, 위쪽 메뉴 · 상세 두 칸). 규칙은 `app/globals.css` 맨 아래 "넓은 화면".
-- 아직 없는 것: 라벨 촬영(찍기 탭은 이름 찾기로 대신), 실제 소셜 로그인·본인인증(지금은 시연용 가입), 공유 2단계, 배포, 하이볼 말고 다른 레시피의 단계 사진·영상(지금은 하이볼 사진을 같이 쓴다).
+- 아직 없는 것: 실제 소셜 로그인·본인인증(지금은 시연용 가입), 공유 2단계, 배포, 하이볼 말고 다른 레시피의 단계 사진·영상(지금은 하이볼 사진을 같이 쓴다).
 #   w h i  
  
