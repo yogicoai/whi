@@ -8,7 +8,13 @@ export default function PostCard({ p }) {
     <Link href={`/board/${p.id}`} className="pcard-b">
       <span className="pcard-b-shot">
         {p.images?.[0] ? <img src={p.images[0].s} alt="" loading="lazy" decoding="async" /> : p.whisky?.image ? <img className="is-bottle" src={p.whisky.image} alt="" loading="lazy" /> : null}
-        {p.likes > 0 && <span className="pcard-b-like">♥ {p.likes}</span>}
+        {(p.likes > 0 || p.comments > 0) && (
+          <span className="pcard-b-like">
+            {p.likes > 0 && `♥ ${p.likes}`}
+            {p.likes > 0 && p.comments > 0 && " · "}
+            {p.comments > 0 && `댓글 ${p.comments}`}
+          </span>
+        )}
       </span>
       <strong className="pcard-b-title">{p.title}</strong>
       <span className="pcard-b-whisky">{p.whisky?.name}</span>

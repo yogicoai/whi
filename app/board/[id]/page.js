@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Icon from "@/components/Icon";
 import PostActions from "@/components/PostActions";
-import { getPost, publicPost } from "@/lib/server/board";
+import PostComments from "@/components/PostComments";
+import { getPost, publicPost, listComments, publicComment } from "@/lib/server/board";
 import { AVATARS } from "@/lib/member";
 import { ratioLine, partText, ago } from "@/lib/board";
 
@@ -18,6 +19,7 @@ export default async function PostPage({ params }) {
   const raw = await getPost((await params).id).catch(() => null);
   if (!raw || raw.status !== "public") notFound();
   const p = publicPost(raw);
+  const comments = (await listComments(p.id).catch(() => [])).map((c) => publicComment(c));
   const ratio = ratioLine(p.parts);
   const steps = (p.steps || "").split("\n").map((s) => s.trim()).filter(Boolean);
   return (
@@ -60,6 +62,7 @@ export default async function PostPage({ params }) {
       )}
 
       <PostActions id={p.id} likes={p.likes} />
+      <PostComments id={p.id} initial={comments} />
     </main>
   );
 }

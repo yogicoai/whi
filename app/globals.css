@@ -1220,7 +1220,7 @@ a.bt:active { transform: scale(0.98); }
 .board-empty .btn-primary { margin-top: 10px; }
 .pcard-b { display: flex; flex-direction: column; min-width: 0; color: var(--ink); text-decoration: none; }
 .pcard-b-shot { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 22px; background: var(--tile); }
-.pcard-b-shot img { width: 100%; height: 100%; object-fit: cover; }
+.pcard-b-shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; }
 .pcard-b-shot img.is-bottle { width: 70%; height: 80%; object-fit: contain; filter: drop-shadow(0 12px 10px rgba(60, 35, 10, 0.25)); }
 .pcard-b-like { position: absolute; right: 10px; bottom: 10px; padding: 4px 9px; border-radius: 999px; background: rgba(255, 255, 255, 0.88); font-size: 12px; font-weight: 700; color: #c2410c; }
 .pcard-b-title { margin: 10px 2px 0; font-size: 15px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -1269,3 +1269,14 @@ a.bt:active { transform: scale(0.98); }
 .post-steps li + li { margin-top: 6px; }
 .post-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .post-like.is-on { color: #c2410c; }
+.post-comments h2 small { margin-left: 4px; font-size: 15px; color: var(--accent-text); }
+.post-comments ul { display: grid; gap: 14px; margin: 10px 0 0; padding: 0; list-style: none; }
+.post-comments li { display: flex; gap: 10px; }
+.post-comments li > i { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--av); color: #fff; font-size: 13px; font-style: normal; font-weight: 700; }
+.cm-who { margin: 0; font-size: 12.5px; color: var(--ink-3); }
+.cm-who b { color: var(--ink); }
+.cm-who button { margin-left: 8px; padding: 0; border: 0; background: none; color: var(--ink-3); font: 600 12px var(--font); text-decoration: underline; cursor: pointer; }
+.cm-text { margin: 2px 0 0; font-size: 14.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
+.cm-write { display: flex; gap: 8px; margin-top: 14px; }
+.cm-write input { flex: 1; min-width: 0; height: 46px; padding: 0 14px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--paper); font: 500 15px var(--font); outline: 0; }
+.cm-write .btn-primary { height: 46px; padding: 0 18px; font-size: 15px; }
