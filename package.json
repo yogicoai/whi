@@ -8,12 +8,14 @@
     "build": "next build",
     "start": "next start -p 5710",
     "photos": "node scripts/build-photos.mjs",
+    "bottles": "node scripts/build-bottles.mjs",
     "export:whiskies": "node scripts/export-whiskies.mjs \"C:/Users/Yogibo Design/Yogicorporation Dropbox/2026_요기코퍼레이션_온라인·마케팅·디자인/04_개발/앱개발/wine/.env.local\""
   },
   "dependencies": {
+    "basic-ftp": "^6.2.3",
+    "mongodb": "7.5.0",
     "next": "16.2.12",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "mongodb": "7.5.0"
+    "react-dom": "19.2.8"
   }
 }

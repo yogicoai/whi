@@ -1,6 +1,7 @@
 import MeProfile from "@/components/MeProfile";
 import SavedClient from "@/components/SavedClient";
 import SiteFooter from "@/components/SiteFooter";
+import BoardTabs from "@/components/BoardTabs";
 
 export const metadata = { title: "내 레시피 — Whisky Lens" };
 
@@ -11,6 +12,7 @@ export default function MePage() {
   return (
     <main className="page page-narrow">
       <h1 className="display">내 레시피</h1>
+      <BoardTabs on="me" />
       <MeProfile />
       <p className="lead saved-lead">내 입에 맞는 비율을 모아 두는 곳이에요.</p>
       <SavedClient />

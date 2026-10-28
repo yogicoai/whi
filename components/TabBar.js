@@ -21,7 +21,7 @@ const TABS = [
   { href: "/recipes", label: "레시피", icon: "cocktail", wide: true },
   { href: "/scan", label: "찍기", icon: "camera", primary: true },
   { href: "/bar", label: "내 바", icon: "bar" },
-  { href: "/me", label: "내 레시피", icon: "saved" },
+  { href: "/me", label: "내 레시피", icon: "saved", match: /^\/(me|board)/ }, // 레시피 공유방(/board)도 내 레시피 안의 방
 ];
 
 export default function TabBar() {
