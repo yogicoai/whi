@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시안 B — 포에틱 호스피탈리티</title>
+<!-- design-pick web-poetic-hospitality-scroll: 샌드·리넨 바탕, 풀블리드 실사 사진(켄 번스), 가는 세리프 한두 줄, 테라코타 한 톤(3% 이하), 직각, 그림자 없음 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --sand: #f3ede2; --ink: #3a3128; --warm: #fbf8f1; --terra: #b4623f; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--sand); color: var(--ink); font-family: "Noto Serif KR", "Cormorant Garamond", Georgia, serif; font-weight: 400; word-break: keep-all; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .app { max-width: 430px; margin: 0 auto; padding-bottom: 60px; overflow: hidden; }
+  .latin { font-family: "Cormorant Garamond", Georgia, serif; }
+
+  /* 장면 — 풀블리드 사진 한 장, 아래쪽에만 베일 */
+  .scene { position: relative; height: 760px; overflow: hidden; color: var(--warm); }
+  .scene > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; animation: kb 12s linear infinite alternate; }
+  .scene::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(to bottom, rgba(28, 22, 14, 0), rgba(28, 22, 14, 0.5)); }
+  @keyframes kb { from { transform: scale(1); } to { transform: scale(1.08) translate(-1%, -1%); } }
+  .top { position: absolute; z-index: 2; left: 0; right: 0; top: 0; display: flex; justify-content: space-between; padding: 22px 24px; color: var(--ink); }
+  .top .brand { font-family: "Cormorant Garamond", serif; font-size: 15px; font-weight: 500; letter-spacing: 0.32em; }
+  .top .menu { font-size: 13px; letter-spacing: 0.02em; }
+  .copy { position: absolute; z-index: 2; left: 24px; right: 24px; bottom: 44px; }
+  .meta { font-family: "Cormorant Garamond", "Noto Serif KR", serif; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; }
+  .en { font-family: "Cormorant Garamond", serif; letter-spacing: 0.24em; text-transform: uppercase; }
+  .copy h1, .copy h2 { margin: 12px 0 18px; font-size: 36px; font-weight: 300; line-height: 1.32; letter-spacing: -0.045em; }
+  .rule { display: block; width: 56px; height: 1px; background: var(--terra); margin-bottom: 16px; }
+  .cta { display: inline-block; padding-bottom: 4px; border-bottom: 1px solid var(--terra); font-size: 14.5px; letter-spacing: 0.04em; }
+  .scene .cta { border-color: var(--warm); }
+
+  /* 글 장면 — 샌드 바탕, 극단적으로 넉넉한 여백 */
+  .text { padding: 104px 28px 108px; }
+  .chapter { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: 26px; color: var(--terra); }
+  .text h2 { margin: 18px 0 20px; font-size: 32px; font-weight: 300; line-height: 1.36; letter-spacing: -0.045em; }
+  .text p { max-width: 30em; margin-bottom: 30px; font-size: 16px; line-height: 1.85; }
+
+  /* 메뉴판 — 바의 메뉴처럼 이름 · 점선 · 비율 */
+  .menu-card { padding: 20px 28px 100px; }
+  .menu-card ul { list-style: none; margin-top: 26px; border-top: 1px solid rgba(58, 49, 40, 0.25); }
+  .menu-card li { padding: 18px 0 16px; border-bottom: 1px solid rgba(58, 49, 40, 0.25); }
+  .menu-card .line { display: flex; align-items: baseline; gap: 10px; }
+  .menu-card .name { font-size: 19px; font-weight: 400; }
+  .menu-card .dots { flex: 1; border-bottom: 1px dotted rgba(58, 49, 40, 0.45); transform: translateY(-5px); }
+  .menu-card .ratio { font-family: "Cormorant Garamond", serif; font-size: 20px; font-weight: 500; }
+  .menu-card .ratio.ko { font-family: "Noto Serif KR", serif; font-size: 15px; font-weight: 400; }
+  .menu-card small { display: block; margin-top: 4px; font-size: 13px; color: rgba(58, 49, 40, 0.78); }
+
+  .field { display: flex; justify-content: space-between; padding: 14px 0 10px; border-bottom: 1px solid var(--terra); font-size: 15px; color: rgba(58, 49, 40, 0.7); }
+
+  .foot { padding: 70px 28px 56px; text-align: center; }
+  .foot .rule { margin: 0 auto 26px; }
+  .foot .brand { font-family: "Cormorant Garamond", serif; font-size: 20px; letter-spacing: 0.34em; }
+  .foot nav { margin-top: 16px; font-size: 13px; letter-spacing: 0.04em; }
+
+  .tab { position: fixed; left: 50%; bottom: 0; z-index: 9; display: grid; grid-template-columns: repeat(5, 1fr); width: 100%; max-width: 430px; height: 58px; transform: translateX(-50%); background: rgba(243, 237, 226, 0.94); border-top: 1px solid rgba(58, 49, 40, 0.2); }
+  .tab a { display: grid; place-items: center; font-size: 13px; }
+  .tab a.on span { padding-bottom: 3px; border-bottom: 1px solid var(--terra); }
+
+  @media (prefers-reduced-motion: reduce) { .scene > img { animation: none; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="scene">
+    <img src="../../../public/drinks/highball.jpg" alt="">
+    <div class="top"><span class="brand">WHISKY LENS</span><span class="menu">시작하기</span></div>
+    <div class="copy">
+      <p class="meta"><span class="en">Tonight</span> — 오늘 저녁</p>
+      <h1>얼음 위로,<br>위스키 한 줄기.</h1>
+      <span class="rule"></span>
+      <a class="cta" href="#">하이볼 만드는 법</a>
+    </div>
+  </section>
+
+  <section class="text">
+    <p class="chapter">i.</p>
+    <h2>위스키 하나에,<br>탄산수 셋.</h2>
+    <p>블로그와 카페에 가장 많이 남은 비율입니다. 처음이라면 이 한 잔부터 시작하세요.</p>
+    <a class="cta" href="#">황금레시피 스물두 가지</a>
+  </section>
+
+  <section class="menu-card">
+    <p class="meta"><span class="en">The Menu</span> — 오늘의 메뉴</p>
+    <ul>
+      <li><div class="line"><span class="name">하이볼</span><span class="dots"></span><span class="ratio">1 : 3</span></div><small>위스키 · 탄산수</small></li>
+      <li><div class="line"><span class="name">잭콕</span><span class="dots"></span><span class="ratio">1 : 3</span></div><small>잭 다니엘 테네시 · 콜라</small></li>
+      <li><div class="line"><span class="name">얼그레이 하이볼</span><span class="dots"></span><span class="ratio">1 : 4</span></div><small>산토리 가쿠빈 · 탄산수 · 얼그레이 시럽</small></li>
+      <li><div class="line"><span class="name">올드패션드</span><span class="dots"></span><span class="ratio ko">저어서</span></div><small>위스키 · 설탕 시럽 · 비터스</small></li>
+      <li><div class="line"><span class="name">핫 토디</span><span class="dots"></span><span class="ratio ko">따뜻하게</span></div><small>위스키 · 꿀 · 뜨거운 물</small></li>
+    </ul>
+  </section>
+
+  <section class="scene">
+    <img src="../../../public/drinks/cola.jpg" alt="">
+    <div class="copy">
+      <p class="meta"><span class="en">Golden recipe</span> — 황금레시피 07</p>
+      <h2>잭 다니엘과 콜라,<br>사람들은 잭콕이라 부릅니다.</h2>
+      <span class="rule"></span>
+      <a class="cta" href="#">잭콕 만들기</a>
+    </div>
+  </section>
+
+  <section class="text">
+    <p class="chapter">ii.</p>
+    <h2>가진 위스키로,<br>오늘의 한 잔을.</h2>
+    <p>병 이름을 적으면 그 위스키에 맞는 비율과 순서를 골라 드립니다.</p>
+    <div class="field"><span>위스키 이름을 적어 주세요</span><span>→</span></div>
+  </section>
+
+  <section class="scene">
+    <img src="../../../public/drinks/hottoddy.jpg" alt="">
+    <div class="copy">
+      <p class="meta"><span class="en">Autumn</span> — 가을밤</p>
+      <h2>찬 바람 부는 밤엔,<br>따뜻한 한 잔.</h2>
+      <span class="rule"></span>
+      <a class="cta" href="#">핫 토디</a>
+    </div>
+  </section>
+
+  <footer class="foot"><span class="rule"></span><p class="brand">WHISKY LENS</p><nav>레시피 · 황금레시피 · 내 바 · 내 레시피</nav></footer>
+</div>
+
+<nav class="tab">
+  <a class="on" href="#"><span>홈</span></a><a href="#"><span>레시피</span></a><a href="#"><span>찍기</span></a><a href="#"><span>내 바</span></a><a href="#"><span>내 레시피</span></a>
+</nav>
+</body>
+</html>

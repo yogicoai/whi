@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시안 A — 시그널 모노크롬</title>
+<!-- design-pick web-signal-monochrome: 순백·순흑 + 시그널 한 색(귤색 계열), 1px 검은 선, 직각 카드, 알약 태그, 그림자 없음 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root { --ink: #000; --sub: #5c5c5c; --signal: #ff4d00; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff; color: var(--ink); font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif; font-size: 16px; line-height: 1.55; word-break: keep-all; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .app { max-width: 430px; margin: 0 auto; padding-bottom: 72px; border-left: 1px solid #000; border-right: 1px solid #000; min-height: 100vh; }
+
+  .hd { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 20px; background: #fff; border-bottom: 1px solid #000; }
+  .mark { font-size: 17px; font-weight: 800; letter-spacing: -0.03em; }
+  .mark i { display: inline-block; width: 7px; height: 7px; margin-left: 3px; border-radius: 50%; background: var(--signal); vertical-align: 2px; }
+  .pill { display: inline-flex; align-items: center; height: 32px; padding: 0 14px; border: 1px solid #000; border-radius: 999px; font-size: 13px; font-weight: 600; }
+
+  .hero { padding: 26px 20px 22px; border-bottom: 1px solid #000; }
+  .label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .label i { display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: var(--signal); }
+  h1 { margin: 12px 0 10px; font-size: 41px; font-weight: 800; letter-spacing: -0.05em; line-height: 1.06; }
+  .body { color: var(--sub); font-size: 15px; }
+  .ctas { display: flex; gap: 8px; margin-top: 18px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; height: 46px; padding: 0 20px; border-radius: 999px; font-size: 15px; font-weight: 700; white-space: nowrap; }
+  .btn.signal { background: var(--signal); color: #000; }
+  .btn.ghost { border: 1px solid #000; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .tags span { padding: 5px 12px; border: 1px solid #000; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .tags span.on { background: #000; color: #fff; }
+
+  .search { display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 20px; border-bottom: 1px solid #000; color: var(--sub); font-size: 15px; }
+  .search svg { color: #000; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #000; }
+  .stats div { padding: 16px 20px 14px; }
+  .stats div:nth-child(odd) { border-right: 1px solid #000; }
+  .stats div:nth-child(-n+2) { border-bottom: 1px solid #000; }
+  .stats b { display: block; font-size: 44px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stats b.sig { color: var(--signal); }
+  .stats span { display: block; margin-top: 8px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .sec { border-bottom: 1px solid #000; }
+  .sec-hd { display: flex; align-items: baseline; justify-content: space-between; padding: 26px 20px 14px; }
+  .sec-hd small { display: block; margin-bottom: 4px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; }
+  h2 { font-size: 25px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.15; }
+  .more { font-size: 13px; font-weight: 600; border-bottom: 1.5px solid var(--signal); }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #000; }
+  .card { position: relative; padding: 14px 14px 16px; border-right: 1px solid #000; border-bottom: 1px solid #000; }
+  .card:nth-child(2n) { border-right: 0; }
+  .card:nth-last-child(-n+2) { border-bottom: 0; }
+  .card img { display: block; width: 100%; height: 150px; object-fit: contain; }
+  .card h3 { margin-top: 8px; font-size: 17px; font-weight: 700; letter-spacing: -0.03em; }
+  .card p { font-size: 12.5px; color: var(--sub); }
+  .card .ratio { position: absolute; top: 12px; left: 12px; padding: 2px 10px; border: 1px solid #000; border-radius: 999px; background: #fff; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .card.first .ratio { background: #000; color: #fff; }
+
+  .rank { list-style: none; border-top: 1px solid #000; }
+  .rank li { display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 8px; padding: 13px 20px; border-bottom: 1px solid #000; }
+  .rank li:last-child { border-bottom: 0; }
+  .rank .no { font-size: 22px; font-weight: 800; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+  .rank li:first-child .no { color: var(--signal); }
+  .rank strong { display: block; font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+  .rank small { display: block; font-size: 12.5px; color: var(--sub); }
+  .rank .r { text-align: right; }
+  .rank .r b { display: block; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .rank .r span { font-size: 11.5px; color: var(--sub); }
+
+  .prod { list-style: none; border-top: 1px solid #000; }
+  .prod li { display: grid; grid-template-columns: 66px 1fr; gap: 14px; padding: 14px 20px; border-bottom: 1px solid #000; }
+  .prod li:last-child { border-bottom: 0; }
+  .prod .shot { display: grid; place-items: center; width: 66px; height: 66px; border: 1px solid #000; }
+  .prod .shot img { width: 82%; height: 82%; object-fit: contain; mix-blend-mode: multiply; }
+  .prod strong { display: block; font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+  .prod .meta { font-size: 12.5px; color: var(--sub); }
+  .prod .row { display: flex; gap: 6px; margin-top: 6px; }
+  .prod .row span { padding: 2px 10px; border: 1px solid #000; border-radius: 999px; font-size: 11.5px; font-weight: 600; }
+  .prod .row span.go { background: #000; color: #fff; }
+
+  .foot { padding: 26px 20px 30px; background: #000; color: #fff; }
+  .foot .mark { color: #fff; }
+  .foot p { margin-top: 8px; font-size: 12.5px; }
+
+  .tab { position: fixed; left: 50%; bottom: 0; z-index: 9; display: grid; grid-template-columns: repeat(5, 1fr); width: 100%; max-width: 430px; height: 64px; transform: translateX(-50%); background: #fff; border-top: 1px solid #000; }
+  .tab a { display: grid; justify-items: center; align-content: center; gap: 2px; font-size: 11px; font-weight: 600; }
+  .tab a .ic { display: grid; place-items: center; width: 46px; height: 28px; border-radius: 999px; }
+  .tab a.on .ic { background: #000; color: #fff; }
+  .tab a.scan .ic { background: var(--signal); }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hd">
+    <span class="mark">위스키 렌즈<i></i></span>
+    <a class="pill" href="#">시작하기</a>
+  </header>
+
+  <section class="hero">
+    <p class="label"><i></i>Tonight · 오늘의 한 잔</p>
+    <h1>오늘 저녁엔<br>뭘 섞어 마실까요?</h1>
+    <p class="body">가진 위스키와 냉장고 속 음료로 만드는 한 잔. 비율과 순서만 따라 하면 됩니다.</p>
+    <div class="ctas">
+      <a class="btn signal" href="#">레시피 보기 →</a>
+      <a class="btn ghost" href="#">내 바로 찾기</a>
+    </div>
+    <div class="tags"><span class="on">하이볼</span><span>잭콕</span><span>칵테일</span><span>따뜻한 한 잔</span><span>1 : 3</span></div>
+  </section>
+
+  <a class="search" href="#"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>가진 위스키 이름으로 찾기</a>
+
+  <section class="stats">
+    <div><b>14</b><span>레시피</span></div>
+    <div><b>1,142</b><span>위스키</span></div>
+    <div><b class="sig">22</b><span>황금레시피</span></div>
+    <div><b>1:3</b><span>가장 많은 비율</span></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-hd"><div><small>POPULAR</small><h2>많이 만드는 레시피</h2></div><a class="more" href="#">전체 →</a></div>
+    <div class="grid">
+      <a class="card first" href="#"><span class="ratio">1 : 3</span><img src="../../../public/drinks3d/highball-s.webp" alt=""><h3>하이볼</h3><p>위스키 · 탄산수</p></a>
+      <a class="card" href="#"><span class="ratio">1 : 3</span><img src="../../../public/drinks3d/lemon-s.webp" alt=""><h3>레몬 하이볼</h3><p>위스키 · 탄산수 · 레몬즙</p></a>
+      <a class="card" href="#"><span class="ratio">1 : 3</span><img src="../../../public/drinks3d/cola-s.webp" alt=""><h3>위스키 콜라</h3><p>위스키 · 콜라</p></a>
+      <a class="card" href="#"><span class="ratio">1 : 3</span><img src="../../../public/drinks3d/ginger-s.webp" alt=""><h3>진저 하이볼</h3><p>위스키 · 진저에일</p></a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-hd"><div><small>GOLDEN RECIPE</small><h2>황금레시피</h2></div><a class="more" href="#">22개 →</a></div>
+    <ol class="rank">
+      <li><span class="no">01</span><span><strong>위스키 하이볼</strong><small>짐빔 화이트 + 탄산수</small></span><span class="r"><b>1 : 3</b><span>글 약 65만</span></span></li>
+      <li><span class="no">02</span><span><strong>얼그레이 하이볼</strong><small>산토리 가쿠빈 + 탄산수 + 얼그레이 시럽</small></span><span class="r"><b>1 : 4</b><span>글 약 21만</span></span></li>
+      <li><span class="no">03</span><span><strong>가쿠 하이볼</strong><small>산토리 가쿠빈 + 탄산수</small></span><span class="r"><b>1 : 4</b><span>글 약 19만</span></span></li>
+      <li><span class="no">07</span><span><strong>잭콕</strong><small>잭 다니엘 테네시 + 콜라</small></span><span class="r"><b>1 : 3</b><span>글 약 5.4만</span></span></li>
+    </ol>
+  </section>
+
+  <section class="sec">
+    <div class="sec-hd"><div><small>REAL BOTTLES</small><h2>실제 제품으로 만드는 한 잔</h2></div></div>
+    <ul class="prod">
+      <li><span class="shot"><img src="https://yogibo.openhost.cafe24.com/app/img/wine/catalog/whisky/5/5e749cd96e3e.webp" alt=""></span><span><strong>페이머스 그라우스</strong><span class="meta">★ 4.7 · 후기 3,025 · 위스키 45 : 탄산수 135</span><span class="row"><span>2~5만원</span><span class="go">하이볼 →</span></span></span></li>
+      <li><span class="shot"><img src="https://yogibo.openhost.cafe24.com/app/img/wine/catalog/whisky/e/e1660e649fc8.webp" alt=""></span><span><strong>탐나불린 셰리 캐스크</strong><span class="meta">★ 4.7 · 후기 2,382 · 위스키 45 : 탄산수 135</span><span class="row"><span>5~10만원</span><span class="go">하이볼 →</span></span></span></li>
+      <li><span class="shot"><img src="https://yogibo.openhost.cafe24.com/app/img/wine/catalog/whisky/5/54653b478517.webp" alt=""></span><span><strong>커티삭 오리지널</strong><span class="meta">★ 4.6 · 후기 2,077 · 위스키 45 · 아마레토 15</span><span class="row"><span>2~5만원</span><span class="go">갓파더 →</span></span></span></li>
+    </ul>
+  </section>
+
+  <footer class="foot"><span class="mark">위스키 렌즈<i></i></span><p>섞어 마시는 위스키 — 비율과 순서만 따라 하면 되는 한 잔.</p></footer>
+</div>
+
+<nav class="tab">
+  <a class="on" href="#"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 11 12 4.5 20 11v9a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></svg></span>홈</a>
+  <a href="#"><span class="ic"><svg viewBox="0 0 24 24"><path d="M6 3.5h12v17H6z M9 8h6 M9 12h6 M9 16h4"/></svg></span>레시피</a>
+  <a class="scan" href="#"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3 M16 4h3a1 1 0 0 1 1 1v3 M20 16v3a1 1 0 0 1-1 1h-3 M8 20H5a1 1 0 0 1-1-1v-3"/><circle cx="12" cy="12" r="3"/></svg></span>찍기</a>
+  <a href="#"><span class="ic"><svg viewBox="0 0 24 24"><path d="M10 3h4v4l1.6 2.6V20a1 1 0 0 1-1 1H9.4a1 1 0 0 1-1-1V9.6L10 7z"/></svg></span>내 바</a>
+  <a href="#"><span class="ic"><svg viewBox="0 0 24 24"><path d="M7 4h10v17l-5-3.6L7 21z"/></svg></span>내 레시피</a>
+</nav>
+</body>
+</html>
